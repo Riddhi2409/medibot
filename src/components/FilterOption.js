@@ -9,7 +9,7 @@ const items=["CDC","NHS","WebSite2","WebMD","WebSite-3","WebSite4"]
 const buttons=document.querySelectorAll(".container button");
 
 
-function FilterOption() {
+function FilterOption({setSources}) {
 
     const [selectedFilters, setSelectedFilters] = useState([]);
     // const [filteredItems, setFilteredItems] = useState(items);
@@ -25,6 +25,7 @@ function FilterOption() {
 
       useEffect(() => {
         // filterItems();
+        setSources(selectedFilters);
       }, [selectedFilters]);
 
     //   const filterItems = () => {

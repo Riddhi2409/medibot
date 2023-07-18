@@ -6,7 +6,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 
 
 
-const Sidebar = ({ setToggleSidebar}) => {
+const Sidebar = ({ setToggleSidebar,setSources}) => {
 
     return (
         <div 
@@ -20,7 +20,7 @@ const Sidebar = ({ setToggleSidebar}) => {
               />
             </div>
             <div className="my-20 md:my-28">
-              <FilterOption />
+              <FilterOption setSources={setSources}/>
             </div>
             <div className="absolute inset-x-0 bottom-0">
               <img src={doctors}/>

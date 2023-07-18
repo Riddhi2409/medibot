@@ -7,22 +7,31 @@ import fileAdd from '../assets/File_dock_add.svg';
 import send from '../assets/Send_hor.svg'
 
 
-function ChatBox() {
-    const [enteredInput,setEnteredInput] = useState(false);
-    const [message,setMessage]=useState("");
+function ChatBox({setCurrentMessage,sources,messages,setMessages,setCurrentReply,currentReply,reply,setReply}) {
+    const [showSendIcon,setShowSendIcon] = useState(false);
+    const [enteredInput,setEnteredInput]=useState("");
 
     
     
     const messageHandler = (e) =>{
-        setMessage(e.target.value);
-        if (message.length>0){
-            setEnteredInput(true);
+        setEnteredInput(e.target.value);
+        if (enteredInput.length>0){
+            setShowSendIcon(true);
         }
     }
 
+    const sendHandler = (e) => {
+      if (enteredInput.length > 0){
+        setCurrentMessage({sources,"message":enteredInput})
+        setMessages([...messages,{sources,"message":enteredInput}])
+        setCurrentReply({"reply":"You should stay in and rest until you feel better. It is important to focus on taking care of yourself and protecting others from getting sick. If your symptoms persist, you should contact your doctor or go to the hospital.",sources});
+        setReply([...reply,{"reply":"You should stay in and rest until you feel better. It is important to focus on taking care of yourself and protecting others from getting sick. If your symptoms persist, you should contact your doctor or go to the hospital.","sources":sources}]);
+      }
+    }
+
     useEffect(()=>{
-        if (message.length==0) {setEnteredInput(false)};
-    },[message])
+        if (enteredInput.length==0) {setShowSendIcon(false)};
+    },[enteredInput])
 
   return (
     <div>
@@ -31,12 +40,12 @@ function ChatBox() {
             <img src={chat} className='cursor-pointer'/>
             <input type='text' placeholder='Let’s talk medical...'  className='focus:outline-0 border-none w-[95%]'
             onChange={messageHandler}
-            value={message}
+            value={enteredInput}
             />
         </div>
-        {enteredInput ? (
-            <div onClick={()=>setMessage("")}>
-                <img src={send} className='cursor-pointer'/>
+        {showSendIcon ? (
+            <div onClick={()=>setEnteredInput("")}>
+                <img src={send} className='cursor-pointer' onClick={sendHandler}/>
             </div> ):( 
             <div className="flex gap-2">
             <img src={fileAdd} className='cursor-pointer'/>
