@@ -8,9 +8,11 @@ import send from '../assets/Send_hor.svg'
 
 
 function ChatBox({setCurrentMessage,sources,messages,setMessages,setCurrentReply,currentReply,reply,setReply}) {
-    const [showSendIcon,setShowSendIcon] = useState(false);
-    const [enteredInput,setEnteredInput]=useState("");
 
+  
+  const [showSendIcon,setShowSendIcon] = useState(false);
+  const [enteredInput,setEnteredInput]=useState("");
+  
     
     
     const messageHandler = (e) =>{
@@ -30,7 +32,8 @@ function ChatBox({setCurrentMessage,sources,messages,setMessages,setCurrentReply
     }
 
     useEffect(()=>{
-        if (enteredInput.length==0) {setShowSendIcon(false)};
+        if (enteredInput.length==0) {setShowSendIcon(false)}
+        else {setShowSendIcon(true)};
     },[enteredInput])
 
   return (
@@ -45,7 +48,9 @@ function ChatBox({setCurrentMessage,sources,messages,setMessages,setCurrentReply
         </div>
         {showSendIcon ? (
             <div onClick={()=>setEnteredInput("")}>
-                <img src={send} className='cursor-pointer' onClick={sendHandler}/>
+                <button  onClick={sendHandler}>
+                  <img src={send} />
+                </button>
             </div> ):( 
             <div className="flex gap-2">
             <img src={fileAdd} className='cursor-pointer'/>

@@ -39,7 +39,7 @@ function Home() {
         )}
       </div>
       <div className=" flex h-full overflow-y-scroll items-center  flex-col justify-between ">
-        <div>
+        <div className="w-full overflow-x-hidden ">
         <Feed messages={messages} reply={reply}/>
         </div>
           <div className="w-full bottom-0 mb-3 mt-3">

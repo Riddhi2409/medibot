@@ -2,8 +2,8 @@ import React from 'react'
 
 function Message({userMessage,message,sources}) {
   return (
-    <div className={`${userMessage ? "justify-end": "justify-start" } flex text-center font-semibold `}>
-      <div className={`${userMessage ? "bg-gradient-to-r from-blue-700 to-blue-400 text-white ": "bg-white text-black" } p-2 rounded-xl w-[50%] max-md:w-[85%] gap-2`}>
+    <div className={`${userMessage ? "justify-end": "justify-start" } flex text-center font-semibold overflow-x-hidden h-full break-words`}>
+      <div className={`${userMessage ? "bg-gradient-to-r from-blue-700 to-blue-400 text-white ": "bg-white text-black" } p-2 rounded-xl w-[50%] max-md:w-[85%] gap-2 overflow-x-hidden`}>
         <div className={`${!userMessage && "border-2 border-b-black border-transparent"} p-1`}>
           <p>{message}</p>
         </div>
