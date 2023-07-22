@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState ,useEffect} from 'react';
 import searchs from '../assets/Search-alt.svg'
+import axios from 'axios';
 
 
 
@@ -21,6 +22,15 @@ function FilterOption({setSources}) {
         } else {
           setSelectedFilters([...selectedFilters, selectedCategory]);
         }
+        axios.post('/upload_sources',{
+          source: [...selectedFilters]
+        })
+          .then((res)=>{
+          console.log(res);
+        })
+          .catch((err)=>{
+          console.log(err);
+        })
       };
 
       useEffect(() => {

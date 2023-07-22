@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 import chat from '../assets/Chat.svg';
 import mic from '../assets/Mic.svg';
@@ -27,6 +28,23 @@ function ChatBox({setCurrentMessage,sources,messages,setMessages,setCurrentReply
         setCurrentMessage({sources,"message":enteredInput})
         setMessages([...messages,{sources,"message":enteredInput}])
         setCurrentReply({"reply":"You should stay in and rest until you feel better. It is important to focus on taking care of yourself and protecting others from getting sick. If your symptoms persist, you should contact your doctor or go to the hospital.",sources});
+        axios.post('/patient_query',{
+          query: enteredInput
+        })
+        .then((res)=>{
+          console.log(res)
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+
+        axios.get('/run_medibot')
+          .then((res)=>{
+            console.log(res);
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
         setReply([...reply,{"reply":"You should stay in and rest until you feel better. It is important to focus on taking care of yourself and protecting others from getting sick. If your symptoms persist, you should contact your doctor or go to the hospital.","sources":sources}]);
       }
     }
